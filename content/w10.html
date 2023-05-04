@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li class='has-children'><a href='w9.html'>w9</a><ul class='dropdown'><li><a href='41023213.html'>41023213</a><li><a href='41023216.html'>41023216</a></li></ul><li><a href='w10.html'>w10</a><li class='has-children'><a href='Brython.html'>Brython</a><ul class='dropdown'><li><a href='Brython_ex2.html'>Brython_ex2</a></li>
+                     <li><a href='About.html'>About</a><li class='has-children'><a href='w9.html'>w9</a><ul class='dropdown'><li><a href='41023213.html'>41023213</a><li><a href='41023216.html'>41023216</a></li></ul><li><a href='w10.html'>w10</a><li><a href='Brython 程式環境.html'>Brython 程式環境</a><li class='has-children'><a href='Brython.html'>Brython</a><ul class='dropdown'><li><a href='Brython_ex2.html'>Brython_ex2</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,7 +141,7 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">41023216 << <a href='41023216.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>w10</h1>
+    <div id="tipue_search_content">41023216 << <a href='41023216.html'>Previous</a> <a href='Brython 程式環境.html'>Next</a> >> Brython 程式環境<br /><h1>w10</h1>
 <p><strong>Q1.What is zmqRemoteAPI, and how does it relate to CoppeliaSim?</strong></p>
 <p><span><span style="background-color: #00ff00;">A</span>:zmqRemoteAPI 是 CoppeliaSim 的遠端 API 實現。CoppeliaSim 是一個機器人仿真軟體，而 zmqRemoteAPI 則是用於與 CoppeliaSim 進行通訊的 API 入口。通過 zmqRemoteAPI，使用者可以通過編程語言（例如 Python、Matlab、C++等）來控制 CoppeliaSim 中的機器人，進行仿真測試、控制算法開發等。</span></p>
 <p><strong>Q2.How do you establish a connection between a Python script and CoppeliaSim using zmqRemoteAPI?</strong></p>
@@ -177,132 +177,7 @@ img.add_border {
 <p>首先，我們將在 CoppeliaSim 中創建一個機器人手臂模型，並配有關節控制器和傳感器。 然後，我們將使用 CoppeliaSim 提供的 Python API 從我們的 Python 程序建立一個到模擬的 zmqRemoteAPI 連接。</p>
 <p>使用 zmqRemoteAPI，我們可以向機器人手臂發送命令，例如更改其關節的位置或將其抓手設置為打開或關閉。 我們還可以從機器人手臂上的傳感器接收數據，例如它的當前位置、速度和傳感器讀數。</p>
 <p>通過將 CoppeliaSim 和 zmqRemoteAPI 與 Python 相結合，我們可以構建一個強大而靈活的機器人模擬，可以實時控制和監控，使我們能夠更高效地測試和開發我們的機器人應用程序。</p>
-<p><button id="add1to100">亂數</button></p>
-<!-- 導入 brython 程式庫 -->
-<p>
-<script src="./../cmsimde/static/brython.js"></script>
-<script src="./../cmsimde/static/brython_stdlib.js"></script>
-</p>
-<!-- 啟動 Brython -->
-<p>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<p><!-- 導入 FileSaver 與 filereader --></p>
-<p>
-<script src="./../cmsimde/static/ace/FileSaver.min.js" type="text/javascript"></script>
-<script src="./../cmsimde/static/ace/filereader.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 ace --></p>
-<p>
-<script src="./../cmsimde/static/ace/ace.js" type="text/javascript"></script>
-<script src="./../cmsimde/static/ace/ext-language_tools.js" type="text/javascript"></script>
-<script src="./../cmsimde/static/ace/mode-python3.js" type="text/javascript"></script>
-<script src="./../cmsimde/static/ace/snippets/python.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
-<script src="./../cmsimde/static/Cango-24v03-min.js"></script>
-<script src="./../cmsimde/static/gearUtils-09.js"></script>
-<script src="./../cmsimde/static/SVGpathUtils-6v03-min.js"></script>
-<script src="./../cmsimde/static/sylvester.js"></script>
-<script src="./../cmsimde/static/PrairieDraw.js"></script>
-</p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src1"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
-<p>
-<script type="text/javascript">
-function doSave(storage_id, filename){
-    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
-    filename = document.getElementById(filename).value
-    saveAs(blob, filename+".py");
-}
-</script>
-</p>
-<p>
-<script type="text/python3">
-from browser import document as doc
-import ace
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-Ace1 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
-def run1():
-    # 利用 get 取下 src 變數值
-    try:
-        url = doc.query["src"]
-    except:
-        url = "https://raw.githubusercontent.com/mdecd2023/2b2-pj2bg1/main/downloads/w10.py"
-    prog = open(url).read()
-
-    # 將程式載入編輯區
-    Ace1.editor.setValue(prog)
-    Ace1.editor.scrollToRow(0)
-    Ace1.editor.gotoLine(0)
-    # 直接執行程式
-    #ns = {'__name__':'__main__'}
-    #exec(prog, ns)
-    # 按下 run 按鈕
-    Ace1.run()
-
-# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
-doc['kw_run1'].bind('click', Ace1.run)
-doc['kw_show_console1'].bind('click', Ace1.show_console)
-doc['kw_clear_console1'].bind('click', Ace1.clear_console)
-doc['clear_bd1'].bind('click', clear_bd1)
-# 呼叫函式執行
-run1()
-</script>
-</p>
-<p><!-- add 1 to 100 開始 -->
-<script type="text/python3">
-from browser import document as doc
-import ace
-
-# 清除畫布
-def clear_bd1(ev):
-    bd = doc["brython_div1"]
-    bd.clear()
-
-# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
-Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
-
-add1to100_url = "https://raw.githubusercontent.com/mdecd2023/2b2-pj2bg1/main/downloads/w10.py"
-
-# 從 gist 取得程式碼
-add_src = open(add1to100_url).read()
-def add(ev):
-    Ace2.editor.setValue(add_src)
-    Ace2.editor.scrollToRow(0)
-    Ace2.editor.gotoLine(0)
-    Ace2.run()
-
-# id 為 "add1to100" 的按鈕點按時, 執行 add 方法
-doc["add1to100"].bind('click', add)
-</script>
-</p>
-<p><!-- add 1 to 100 結束--></p>
-<!-- editor1 開始 -->
-<p><!-- 用來顯示程式碼的 editor 區域 --></p>
-<div id="kw_editor1" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
-<p><!-- 存擋表單結束 --></p>
-<p></p>
-<p><!-- 執行與清除按鈕開始 --></p>
-<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<p><!-- 執行與清除按鈕結束 --></p>
-<p></p>
-<p><!-- 程式執行 ouput 區 --></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
-<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
-<div id="brython_div1"></div>
-<!-- editor1 結束 --><!-- ########################################## -->
-<div></div><br />41023216 << <a href='41023216.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+<br />41023216 << <a href='41023216.html'>Previous</a> <a href='Brython 程式環境.html'>Next</a> >> Brython 程式環境</div>
         
     <!-- footer -->
       <div class="container">
